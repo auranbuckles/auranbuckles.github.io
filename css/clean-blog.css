@@ -402,6 +402,11 @@ img::-moz-selection {
   color: white;
   background: transparent;
 }
+
+img {
+  margin: auto;
+}
+
 body {
   webkit-tap-highlight-color: #0085a1;
 }
