@@ -1,0 +1,20 @@
+# Site settings
+title:  Auran Buckles
+header-img: img/home-bg.png
+email: auran59@gmail.com
+copyright_name: auranbuckles
+# description:
+baseurl: "" # the subpath of your site, e.g. /blog
+# twitter_username: 
+github_username:  auranbuckles
+learn_profile: auranbuckles
+email_username: auran59@gmail.com
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+paginate: 5
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+
+gems: [jekyll-paginate, jekyll-feed]
