@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Building a Sinatra Zoo"
-date:   2016-10-24 20:12:12 +0000
+date:   2016-10-24 16:12:12 -0400
 ---
 
 
@@ -20,11 +20,11 @@ Users in [Zookeeper](https://github.com/auranbuckles/zookeeper) can:
 1. Create an account and view their profiles
 2. Log in and out of their accounts
 3. Browse other users' profiles and their animals' profiles
-3. Create animals with a name, species, gender, and description
-4. Edit an animal's name and description
-5. Purchase food and feed it to the animals they own
-6. Reset their animal's status to the default status
-6. Delete their animals
+4. Create animals with a name, species, gender, and description
+5. Edit an animal's name and description
+6. Purchase food and feed it to the animals they own
+7. Reset their animal's status to the default status
+8. Delete their animals
 
 By default, a profile picture is assigned to each species, so that when a user creates a sloth, a picture of a sloth will show up in its profile. Upon creation, each animal also has an appetite level of 10 and a happiness level of 0. This is because the animal is not fed yet. At sign up, each user gets a certain amount of bamboo shoots, fish, fruits, grass, and meat. Users may purchase more of each type of food by submitting a form (no credit card required, of course). Because each species only eats one type of food, when an animal is fed, the user's food inventory will adjust accordingly. This restriction begins with a helper method:
 
