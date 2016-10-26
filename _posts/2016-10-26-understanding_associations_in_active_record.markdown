@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Understanding Associations in Active Record"
-date:   2016-10-26 16:47:21 +0000
+date:   2016-10-26 12:47:21 -0400
 ---
 
 Relationships are complicated, even in a two-dimensional universe. Trying to understand what Active Record associations are, which ones to use under what circumstances, and how they work together are confusing concepts for beginners to wrap our heads around.
@@ -147,6 +147,7 @@ Let's improve this using the same three models. While we previously used a **joi
 
 ```
 class Flight < ActiveRecord::Base
+	has_many :bookings
 	has_many :passengers, through: :bookings
 end
 
@@ -156,6 +157,7 @@ class Booking < ActiveRecord::Base
 end
 
 class Passenger < ActiveRecord::Base
+	has_many :bookings
 	has_many :flights, through: :bookings
 end
 ```
