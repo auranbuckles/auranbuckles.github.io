@@ -9,6 +9,8 @@ date:   2016-10-30 17:38:03 -0400
 
 The idea for this project isn't entirely original. The title is a reference to Douglas Adams' second book in the Hitchhiker's Guide to the Galaxy trilogy, [The Restaurant at the End of the Universe](https://en.wikipedia.org/wiki/The_Restaurant_at_the_End_of_the_Universe).
 
+![Oovart's Planet Shop Sitepage](/img/oovarts-planet-shop.png)
+
 The first and foremost task before diving into the code was mapping out the relational database for the application. Instead of features, I initially wanted to allow users to create inhabitants for their planets. The only problem was, because the inhabitants were unique to the individual planets, I wouldn't have been able to implement a has_many, through association between the users and the inhabitants. I could have still gone with it by creating preexisting species of inhabitants, but I ultimately decided to experiment on a less complex scale with the Feature model first.
 
 The second idea was to allow users to create events for the other users on their planets, making Planets the model that connects the User and Guest (of the events) class. However, this would make the associations more complicated and require additional authorizations on top of authentications. At the end, I chose to use an Order class which acted as the `has_many, through` model connecting the Planet and Feature class. In this case, a User simply `has_many` planets.
@@ -36,7 +38,7 @@ The toughest hurdle in the making of this app was creating nested forms. For thi
 ```
 class Planet < ActiveRecord::Base
 
-...
+	...
 
 	def orders_attributes=(attributes)
 		attributes.values.each do |att|

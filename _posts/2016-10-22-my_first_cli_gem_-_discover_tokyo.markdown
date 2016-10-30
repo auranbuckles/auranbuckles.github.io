@@ -9,7 +9,7 @@ date:   2016-10-21 22:03:28 -0400
 
 Since the data is used to create manipulable objects through class and instance methods, users of the gem can view detailed information about specific events – they are searchable by index number or keywords. Each event, as a class and object, has name, date(s), location, link, and description attributes. Tokyo-events has the potential to be able to scrape other websites and expand its search functions in the future, providing a centralized, convenient tool for locals and tourists in search of fun adventures in Tokyo.
 
-![tokyo-events](https://s9.postimg.org/ilaql15nz/tokyo_events.png)
+![tokyo-events](/img/tokyo-events-gem.png)
 
 The most valuable lesson I learned from this project wasn’t the object-oriented structuring, data scraping, or even the meticulous Ruby programming logic needed here and there. I’ve been preparing for all that by learning the individual components of a CLI application or gem – method scope, loops, arrays and hashes, iterations, Regex... What I haven't been focusing on was how they come together to form a coherent, well-organized application. More importantly, the application's workflow should be clean, making clear distinctions between the different roles of the classes, methods, and code that "runs" the application. Through this project, I was able to experience first-handedly, as a developer, what it really means to be a gem and [how gems work](http://www.justinweiss.com/articles/how-do-gems-work/):
 
