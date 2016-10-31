@@ -5,36 +5,42 @@
  */
 
 body {
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'Lato', 'Helvetica', sans-serif;
   font-size: 20px;
-  color: #404040;
+  color: #38271d;
 }
 p {
   line-height: 1.5;
   margin: 30px 0;
 }
 p a {
-  text-decoration: underline;
+  text-decoration: none;
+  border-bottom: 1px dotted #38271d;
 }
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-h6.powered_by {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: normal;
+h6 {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-weight: 600;
   line-height: 1;
   font-size: 13px;
   margin-top: 0px;
 }
+
+h2 {
+  color: #38271d;
+}
+
 a {
-  color: #404040;
+  color: #38271d;
 }
 a:hover,
 a:focus {
-  color: #0085a1;
+  color: #698a2e;
+  text-decoration: none;
 }
 a img:hover,
 a img:focus {

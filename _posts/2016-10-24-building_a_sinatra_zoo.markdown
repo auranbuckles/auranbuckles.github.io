@@ -5,7 +5,7 @@ date:   2016-10-24 16:12:12 -0400
 ---
 
 
-For this project, I wanted to build something that simulated a real life event, perhaps something fun that people do on a weekend. I ultimately decided to create a zoo because (1) I love animals, and (2) going to the zoo involves just a few simple activities, but still has enough programmable interactions between the objects to make it interesting. After some brainstorming, I tweaked the idea a little, so that each user would create their own zoo, hence the name Zookeeper. This leaves room for potential additions such as visitors and tickets to be implemented in the future.
+For this [Sinztra Zookeeper](https://github.com/auranbuckles/zookeeper) project, I wanted to build something that simulated a real life event, something fun that people do on a weekend. I ultimately decided to create a zoo because (1) I love animals, and (2) going to the zoo involves just a few simple activities, but still has enough programmable interactions between the objects to make it interesting. After some brainstorming, I tweaked the idea a little, so that each user would create their own zoo, hence the name Zookeeper. This leaves room for potential additions such as visitors and tickets to be implemented in the future.
 
 ![Zookeeper sitepage](/img/zookeeper.png)
 
