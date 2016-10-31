@@ -130,14 +130,14 @@ hr.small {
   }
   .navbar-custom.is-fixed .navbar-brand:hover,
   .navbar-custom.is-fixed .navbar-brand:focus {
-    color: #0085a1;
+    color: #698a2e;
   }
   .navbar-custom.is-fixed .nav li a {
     color: #404040;
   }
   .navbar-custom.is-fixed .nav li a:hover,
   .navbar-custom.is-fixed .nav li a:focus {
-    color: #0085a1;
+    color: #698a2e;
   }
   .navbar-custom.is-visible {
     /* if the user changes the scrolling direction, we show the header */
@@ -232,7 +232,7 @@ hr.small {
 .post-preview > a:hover,
 .post-preview > a:focus {
   text-decoration: none;
-  color: #0085a1;
+  color: #698a2e;
 }
 .post-preview > a > .post-title {
   font-size: 30px;
@@ -256,7 +256,7 @@ hr.small {
 }
 .post-preview > .post-meta > a:hover,
 .post-preview > .post-meta > a:focus {
-  color: #0085a1;
+  color: #698a2e;
   text-decoration: underline;
 }
 @media only screen and (min-width: 768px) {
@@ -336,7 +336,7 @@ footer .copyright {
   opacity: 1;
 }
 .floating-label-form-group-with-focus label {
-  color: #0085a1;
+  color: #38271d;
 }
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eeeeee;
@@ -356,8 +356,8 @@ form .row:first-child .floating-label-form-group {
 }
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #0085a1;
-  border: 1px solid #0085a1;
+  background-color: #698a2e;
+  border: 1px solid #698a2e;
   color: white;
 }
 .pager {
@@ -384,8 +384,8 @@ form .row:first-child .floating-label-form-group {
 .pager li > a:hover,
 .pager li > a:focus {
   color: white;
-  background-color: #0085a1;
-  border: 1px solid #0085a1;
+  background-color: #698a2e;
+  border: 1px solid #698a2e;
 }
 .pager .disabled > a,
 .pager .disabled > a:hover,
@@ -398,12 +398,12 @@ form .row:first-child .floating-label-form-group {
 ::-moz-selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #38271d;
 }
 ::selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #38271d;
 }
 img::selection {
   color: white;
@@ -419,7 +419,7 @@ img {
 }
 
 body {
-  webkit-tap-highlight-color: #0085a1;
+  webkit-tap-highlight-color: #38271d;
 }
 
 .svg-center {
