@@ -19,35 +19,35 @@ The most challenging part of the project, however, was scraping the data. Tediou
 
 As a result, an overwhelming amount of regex and gsub was used to obtain and arrange the information into different class attributes in the application. The code became too overwhelming in order to consider the various date and address formats. On the other hand, I also learned from this frustrating experience what NOT to do when constructing a website, and it gave me ideas on how I could improve on the things I've built. I've learned to add more classes and IDs in defining and categorizing the different areas of my HTML code, as well as a wider variety of tags such as `<section>` and `<article>`. Below is the scraper method I wrote for the first site. I hope you don't ever have to write a scraper method like this, and if you do, please learn about the `.strip` Ruby method first.
 
-```
+{% highlight ruby %}
 def self.scrape_events
-	doc = Nokogiri::HTML(open("#"))
+  doc = Nokogiri::HTML(open("#"))
 
-	events = {}
-	doc.css("tr").each_with_index do |event, index|
-		if index != 0
-			event.css("td").each_with_index do |info, index|
-				if index == 1
-					events[:name] = info.css("strong").text
-					if info.text.match(/\d+\/\d+\/\d+/)
-						start_end_dates = info.text.scan(/\d+\/\d+\/\d+/)
-						events[:dates] = start_end_dates.join(" - ")
-					elsif info.text.match(/January|February|March|April|May|June|July|August|September|October|November|December/)
-						start_end_dates = info.text.scan(/January\s\d+.{2}|February\s\d+.{2}|March\s\d+.{2}|April\s\d+.{2}|May\s\d+.{2}|June\s\d+.{2}|July\s\d+.{2}|August\s\d+.{2}|September\s\d+.{2}|October\s\d+.{2}|November\s\d+.{2}|December\s\d+.{2}/)
-						events[:dates] = start_end_dates.join(" - ")
-					end
+  events = {}
+  doc.css("tr").each_with_index do |event, index|
+    if index != 0
+      event.css("td").each_with_index do |info, index|
+        if index == 1
+          events[:name] = info.css("strong").text
+          if info.text.match(/\d+\/\d+\/\d+/)
+            start_end_dates = info.text.scan(/\d+\/\d+\/\d+/)
+            events[:dates] = start_end_dates.join(" - ")
+          elsif info.text.match(/January|February|March|April|May|June|July|August|September|October|November|December/)
+            start_end_dates = info.text.scan(/January\s\d+.{2}|February\s\d+.{2}|March\s\d+.{2}|April\s\d+.{2}|May\s\d+.{2}|June\s\d+.{2}|July\s\d+.{2}|August\s\d+.{2}|September\s\d+.{2}|October\s\d+.{2}|November\s\d+.{2}|December\s\d+.{2}/)
+            events[:dates] = start_end_dates.join(" - ")
+          end
 
-					events[:url] = info.css("a").attribute("href").value
-				elsif index == 2
-					events[:location] = info.css("a").text.gsub(/\s+/, "")
-				end
-			end
-		end
-	end
+          events[:url] = info.css("a").attribute("href").value
+        elsif index == 2
+          events[:location] = info.css("a").text.gsub(/\s+/, "")
+        end
+      end
+    end
+  end
 
-	events
+  events
 end
-```
+{% endhighlight %}
 
 Overall, I gained a better understanding of the anatomy and flow of an object-oriented application. In particular, I strengthened my knowledge on concepts such as class vs. instance methods, the separation of code that have different responsibilities, the instantiation of objects, and the importance of keeping the end-user in mind while constructing an application's output. I look forward to growing as a Ruby/Rails developer and contributing to the incredible community.
 

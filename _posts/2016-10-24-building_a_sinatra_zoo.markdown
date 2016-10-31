@@ -30,7 +30,7 @@ Users in [Zookeeper](https://github.com/auranbuckles/zookeeper) can:
 
 By default, a profile picture is assigned to each species, so that when a user creates a sloth, a picture of a sloth will show up in its profile. Upon creation, each animal also has an appetite level of 10 and a happiness level of 0. This is because the animal is not fed yet. At sign up, each user gets a certain amount of bamboo shoots, fish, fruits, grass, and meat. Users may purchase more of each type of food by submitting a form (no credit card required, of course). Because each species only eats one type of food, when an animal is fed, the user's food inventory will adjust accordingly. This restriction begins with a helper method:
 
-```
+{% highlight ruby %}
 class ApplicationController < Sinatra::Base
 
   ...
@@ -57,38 +57,38 @@ class ApplicationController < Sinatra::Base
 
   end
 end
-```
+{% endhighlight %}
 
 The animal's profile (where the user can feed the animal) will indicate to the user which type of food it requires, using `<h2>Eats: <%= appropriate_food %></h2>`. When the user clicks on `Feed <%= @animal.name %>`, a form is submitted and the user's food inventory is updated through some Ruby logic. At the same time the user's corresponding food inventory decreases by 1, the animal's appetite level decreases by 1 and its happiness level increases by 1.
 
-```
+{% highlight ruby %}
 class AnimalsController < ApplicationController
 
-...
+  ...
 
-	patch '/animal-attributes/:id' do
-		@animal = Animal.find(params[:id])
-		if logged_in? && current_user.id == @animal.user.id
-			@animal.update(appetite: @animal.appetite - 1, happiness: @animal.happiness + 1)
-			case appropriate_food
-			when "bamboo shoots"
-				@animal.user.update(bamboo_shoots: @animal.user.bamboo_shoots - 1)
-			when "fish"
-				@animal.user.update(fish: @animal.user.fish - 1)
-			when "fruits"
-				@animal.user.update(fruits: @animal.user.fruits - 1)
-			when "grass"
-				@animal.user.update(grass: @animal.user.grass - 1)
-			when "meat"
-				@animal.user.update(meat: @animal.user.meat - 1)
-			end
-		end
-		redirect "/animal/#{@animal.id}"
-	end
+  patch '/animal-attributes/:id' do
+    @animal = Animal.find(params[:id])
+    if logged_in? && current_user.id == @animal.user.id
+      @animal.update(appetite: @animal.appetite - 1, happiness: @animal.happiness + 1)
+      case appropriate_food
+      when "bamboo shoots"
+        @animal.user.update(bamboo_shoots: @animal.user.bamboo_shoots - 1)
+      when "fish"
+        @animal.user.update(fish: @animal.user.fish - 1)
+      when "fruits"
+        @animal.user.update(fruits: @animal.user.fruits - 1)
+      when "grass"
+        @animal.user.update(grass: @animal.user.grass - 1)
+      when "meat"
+        @animal.user.update(meat: @animal.user.meat - 1)
+      end
+    end
+    redirect "/animal/#{@animal.id}"
+  end
 	
-	...
+  ...
 end
-```
+{% endhighlight %}
 
 Writing the above two pieces of code was probably the second most difficult part of this project, as it required some long-time-no-see lower level Ruby code. The most difficult part was user authentication during sign up and log in, and preventing the user from taking actions that belong to other users. For example, a user shouldn't be able to edit or feed another user's animals, or update their food inventory. Luckily, the cookie-cutter ```logged_in?``` and ```current_user``` helpers often used in simple applications solved all these problems. While I at first filled in all the routes in the Application Controller, they were moved to a separate Session Controller to free up the clutter.
 

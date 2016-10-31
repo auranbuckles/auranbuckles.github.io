@@ -11,31 +11,31 @@ Programmers don't have to be financers or economists to be successful in their f
 
 If you've worked on object-oriented programming, business logic is no stranger. The logic and rules simply determine what and how objects get created, read, updated, and destroyed (when used in a CRUD application), and subsequently programming the associations (relationships) between these objects. For example, a cafeteria in a Sinatra CRUD application has the various products it offers, managers, cashiers, and customers. These objects are connected through orders and transactions. A product may have the attributes of "Name", "Category", "Cost", "Price", "Date of Purchase", and "Expiration Date".
 
-```
+{% highlight ruby %}
 # the Product class within app/models
 
 class Product < ActiveRecord::Base
 
-	validates_presence_of :name, :cost, :price, :date_of_purchase, :expiration_date
+  validates_presence_of :name, :cost, :price, :date_of_purchase, :expiration_date
 
-	belongs_to :category
+  belongs_to :category
 
 end
 
 # the database for products
 
 class CreateProducts < ActiveRecord::Migration
-	def change
-		create_table :products do |t|
-			t.string :name
-			t.float :cost
-			t.float :price
-			t.date :date_of_purchase
-			t.date :expiration_date
-			t.integer :category_id
-	end
+  def change
+    create_table :products do |t|
+      t.string :name
+      t.float :cost
+      t.float :price
+      t.date :date_of_purchase
+      t.date :expiration_date
+      t.integer :category_id
+  end
 end
-```
+{% endhighlight %}
 
 Some distinguish business logic and business rules, which are expressions of business procedures and policies written in code. Our example above can have (but not limited to) the following business rules:
 * Each customer gets a ticket number to get in line.

@@ -15,44 +15,44 @@ The first and foremost task before diving into the code was mapping out the rela
 
 The second idea was to allow users to create events for the other users on their planets, making Planets the model that connects the User and Guest (of the events) class. However, this would make the associations more complicated and require additional authorizations on top of authentications. At the end, I chose to use an Order class which acted as the `has_many, through` model connecting the Planet and Feature class. In this case, a User simply `has_many` planets.
 
-```
+{% highlight ruby %}
 class Planet < ActiveRecord::Base
-	belongs_to :user
-	has_many :orders
-	has_many :features, through: :orders
+  belongs_to :user
+  has_many :orders
+  has_many :features, through: :orders
 end
 
 class Order < ActiveRecord::Base
-	belongs_to :planet
-	belongs_to :feature
+  belongs_to :planet
+  belongs_to :feature
 end
 
 class Feature < ActiveRecord::Base
-	has_many :orders
-	has_many :planets, through: :orders
+  has_many :orders
+  has_many :planets, through: :orders
 end
-```
+{% endhighlight %}
 
 The toughest hurdle in the making of this app was creating nested forms. For this type of relational database and associated models, I had to create a nested-nested form – while ordering a new planet, a user can also make an optional order for one more features for that planet. In addition, the user can choose whether the features are preexisting (already in the database) or customized, or both. If a custom feature is created, it will be inserted into the database as a new Feature object, making it available to other users as well. Since I wanted to allow blank entries for the features to be sent without accidentally creating a new object in the Feature model, some Ruby validation logic was also necessary (see code below).
 
-```
+{% highlight ruby %}
 class Planet < ActiveRecord::Base
 
-	...
+  ...
 
-	def orders_attributes=(attributes)
-		attributes.values.each do |att|
-			if !att[:feature_id].blank? || !att[:feature_attributes].blank? && !att[:size].blank?
-				order = Order.new(att)
-				order.planet = self
-				order.price = rand(1000..8000)
-				self.orders << order
-			end
-		end
-	end
+  def orders_attributes=(attributes)
+    attributes.values.each do |att|
+      if !att[:feature_id].blank? || !att[:feature_attributes].blank? && !att[:size].blank?
+        order = Order.new(att)
+        order.planet = self
+        order.price = rand(1000..8000)
+        self.orders << order
+      end
+    end
+  end
 	
 end
-```
+{% endhighlight %}
 
 As I had to dig deep and understand almost every aspect of how nested forms work, I'll probably write a tutorial in the next blog on nested-nested forms. The lessons I learned were: pay attention to your Rails version, understand how the `accepts_nested_attributes_for` macro works (even if you're just using it as a shortcut), and choose a debugging tool that you're comfortable with. For this app, I used an `orders_attributes=` and a `feature_attributes=` custom attribute writer, instead of the `accepts_nested_attributes_for` macro. [This tutorial](https://www.youtube.com/watch?v=WVR-oDQRrFs&list=PLMEKAK4ZKPNoA13U1xYMwdxFfWc4Wg8eQ&index=1) on Rails 4.2 nested forms was particularly helpful.
 
