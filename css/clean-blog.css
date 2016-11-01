@@ -36,6 +36,7 @@ h2 {
 a,
 a:focus {
   color: #38271d;
+  text-decoration: none;
 }
 a:hover {
   color: #698a2e;

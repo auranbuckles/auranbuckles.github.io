@@ -6,12 +6,12 @@ date:   2016-10-26 12:47:21 -0400
 
 Relationships are complicated, even in a two-dimensional universe. Trying to understand what Active Record associations are, which ones to use under what circumstances, and how they work together are confusing concepts for beginners to wrap our heads around.
 
-The Rails Guide on [Active Record Associations](http://guides.rubyonrails.org/association_basics.html) offers a straightforward and complete list of the different types of associations you can choose from. According to the guide, associations are "connection[s] between two Active Record models" that "make common operations simpler and easier in your code." To implement Active Record associations, the developer has to incorporate both data manipulation and business logic in the architecture of the application. At a minimum, an object's role in relation to other objects must correspond to how these objects are structured and mapped in the database.
+The Rails Guide on [Active Record Associations](http://guides.rubyonrails.org/association_basics.html){:target="_blank"} offers a straightforward and complete list of the different types of associations you can choose from. According to the guide, associations are "connection[s] between two Active Record models" that "make common operations simpler and easier in your code." To implement Active Record associations, the developer has to incorporate both data manipulation and business logic in the architecture of the application. At a minimum, an object's role in relation to other objects must correspond to how these objects are structured and mapped in the database.
 
 I won't be reiterating the definitions and concepts in the Rails official documentation here, but I'll try to demystify the art of associations by creating a very basic example structure of an airline's business. JadeBlue Airlines offers various flights, and has passengers assigned to the flights through bookings. I'll be discussing which associations are appropriate depending on the circumstances and demonstrating the advantages and disadvantages of each. Hopefully by doing so, beginners won't shy away from employing more complex associations in their projects.
 
 ## Basic Associations in Rails
-A [one-to-many relationship](http://guides.rubyonrails.org/association_basics.html#the-has-many-association) is the least ambiguous kind of relationship. Here, JadeBlue offers a selection of flights, and each flight has many passengers.
+A [one-to-many relationship](http://guides.rubyonrails.org/association_basics.html#the-has-many-association){:target="_blank"} is the least ambiguous kind of relationship. Here, JadeBlue offers a selection of flights, and each flight has many passengers.
 
 {% highlight ruby %}
 class Flight < ActiveRecord::Base
@@ -19,7 +19,7 @@ class Flight < ActiveRecord::Base
 end
 {% endhighlight %}
 
-But what is happening behind the scenes in Rails? Here, `has_many` is a method drawn from the Rails DSL. To understand DSLs a little more, [this article](http://martinfowler.com/bliki/InternalDslStyle.html) explains it well. The method accepts a symbol as an **argument**, ```:passengers```. Given this, Rails will automatically create associations based on naming conventions. Essentially, Rails enables a ```passengers``` method that an object of the Flight class can call on. For example, we can do this to get a flight's passengers:
+But what is happening behind the scenes in Rails? Here, `has_many` is a method drawn from the Rails DSL. To understand DSLs a little more, [this article](http://martinfowler.com/bliki/InternalDslStyle.html){:target="_blank"} explains it well. The method accepts a symbol as an **argument**, ```:passengers```. Given this, Rails will automatically create associations based on naming conventions. Essentially, Rails enables a ```passengers``` method that an object of the Flight class can call on. For example, we can do this to get a flight's passengers:
 
 {% highlight ruby %}
 flight = Flight.find(2)
@@ -61,7 +61,7 @@ Flights:
 | 3  | Frankfurt | Paris       |
 
 ## Using a Join Table
-In reality, a passenger can have many flights while a flight has many passengers. A **join table** serves as a liaison between the two models and keeps track of this [has_and_belongs_to_many relationship](http://guides.rubyonrails.org/association_basics.html#the-has-and-belongs-to-many-association). According to naming conventions, the name of the join table must be the two model names put together in alphabetical order (flights_passengers). You may also use `add_index:` in your migrations to create a primary key column (a unique index) in the join table.
+In reality, a passenger can have many flights while a flight has many passengers. A **join table** serves as a liaison between the two models and keeps track of this [has_and_belongs_to_many relationship](http://guides.rubyonrails.org/association_basics.html#the-has-and-belongs-to-many-association){:target="_blank"}. According to naming conventions, the name of the join table must be the two model names put together in alphabetical order (flights_passengers). You may also use `add_index:` in your migrations to create a primary key column (a unique index) in the join table.
 
 {% highlight ruby %}
 class Flight < ActiveRecord::Base

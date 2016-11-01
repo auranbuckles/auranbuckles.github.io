@@ -1,8 +1,9 @@
 # Site settings
 title:  Auran Buckles
 header-img: img/banner.jpg
+author: Auran Buckles
 email: auran59@gmail.com
-copyright_name: auranbuckles
+copyright_name: auran.life
 # description:
 baseurl: "" # the subpath of your site, e.g. /blog
 # twitter_username: 

@@ -5,7 +5,7 @@ date:   2016-10-24 16:12:12 -0400
 ---
 
 
-For this [Sinatra Zookeeper](https://github.com/auranbuckles/zookeeper) project, I wanted to build something that simulated a real life event, something fun that people do on a weekend. I ultimately decided to create a zoo because (1) I love animals, and (2) going to the zoo involves just a few simple activities, but still has enough programmable interactions between the objects to make it interesting. After some brainstorming, I tweaked the idea a little, so that each user would create their own zoo, hence the name Zookeeper. This leaves room for potential additions such as visitors and tickets to be implemented in the future.
+For this [Sinatra Zookeeper](https://github.com/auranbuckles/zookeeper){:target="_blank"} project, I wanted to build something that simulated a real life event, something fun that people do on a weekend. I ultimately decided to create a zoo because (1) I love animals, and (2) going to the zoo involves just a few simple activities, but still has enough programmable interactions between the objects to make it interesting. After some brainstorming, I tweaked the idea a little, so that each user would create their own zoo, hence the name Zookeeper. This leaves room for potential additions such as visitors and tickets to be implemented in the future.
 
 ![Zookeeper sitepage](/img/zookeeper.png)
 
@@ -18,7 +18,7 @@ This project made me realize how important it is to take time to make a blueprin
 
 After thorough consideration, I went with the last idea, because it was the simplest and most straightforward. It wasn’t necessary to build a whole Zoo class; each user can have one zoo (be their own zoo), at least for the time being. If I wanted each user to be able to build multiple zoos, I can add the Zoo class later. It also wasn’t necessary to make food its own class, since it doesn’t have many attributes, and it would be unnecessarily cumbersome to continuously track down, update, and delete the food and types of food. As for only allowing each animal to eat their corresponding type of food, I decided to code in the restrictions using helper methods and a form. After the foundational structure was built, I made a list of what the app actually does.
 
-Users in [Zookeeper](https://github.com/auranbuckles/zookeeper) can:
+Users in Zookeeper can:
 1. Create an account and view their profiles
 2. Log in and out of their accounts
 3. Browse other users' profiles and their animals' profiles
@@ -94,4 +94,4 @@ Writing the above two pieces of code was probably the second most difficult part
 
 If I were to expand upon this project, the first move would be to display error messages in the sign up / login routes, and where users perform actions without authority. The front-end CSS and JavaScript also need some beautification. To increase user interaction in the application, an additional Zoo class or Visitor class can add more layers of functionality. Having visitors would allow users to issue and track tickets to other users. Overall, I enjoyed this project, not just because I love the subject and theme, but more importantly, I gained a firmer grasp of the CRUD functions in a Sinatra application. Watching the code come together bit by bit and blossom into a fully functional application is truly every developer's greatest satisfaction.
 
-[Zookeeper (Github)](https://github.com/auranbuckles/zookeeper)
+[Zookeeper (Github)](https://github.com/auranbuckles/zookeeper){:target="_blank"}
