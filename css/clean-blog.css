@@ -30,15 +30,14 @@ h6 {
 }
 
 h2 {
-  padding-top: 1em;
   color: #38271d;
 }
 
-a {
+a,
+a:focus {
   color: #38271d;
 }
-a:hover,
-a:focus {
+a:hover {
   color: #698a2e;
   text-decoration: none;
 }
@@ -90,7 +89,7 @@ hr.small {
 @media only screen and (min-width: 768px) {
 
   body {
-    font-size: 2em;
+    font-size: 1.7em;
   }
 
   img#line-art {
@@ -124,7 +123,7 @@ hr.small {
 @media only screen and (min-width: 1170px) {
   
   body {
-    font-size: 1.8em;
+    font-size: 1.9em;
   }
 
   img#line-art {
@@ -209,7 +208,7 @@ hr.small {
 .intro-header .site-heading h1,
 .intro-header .page-heading h1 {
   margin-top: 0;
-  font-size: 50px;
+  font-size: 45px;
 }
 .intro-header .site-heading .subheading,
 .intro-header .page-heading .subheading {
@@ -223,7 +222,7 @@ hr.small {
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading h1,
   .intro-header .page-heading h1 {
-    font-size: 80px;
+    font-size: 70px;
   }
 }
 .intro-header .post-heading h1 {
@@ -280,6 +279,7 @@ hr.small {
   font-size: 18px;
   font-style: italic;
   margin-top: 0;
+  margin-bottom: 3em;
 }
 .post-preview > .post-meta > a {
   text-decoration: none;
