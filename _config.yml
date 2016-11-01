@@ -9,6 +9,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 github_username:  auranbuckles
 learn_profile: auranbuckles
 email_username: auran59@gmail.com
+linkedin_username: auranbuckles
 
 # Build settings
 markdown: kramdown
