@@ -55,6 +55,14 @@ th, td {
   font-size: 0.8em;
 }
 
+img {
+  margin: auto;
+}
+
+img#line-art {
+  display: none;
+}
+
 hr.small {
   max-width: 100px;
   margin: 15px auto;
@@ -80,6 +88,11 @@ hr.small {
   letter-spacing: 1px;
 }
 @media only screen and (min-width: 768px) {
+  img#line-art {
+    display: block;
+    width: 200px;
+  }
+
   .navbar-custom {
     background: transparent;
     border-bottom: 1px solid transparent;
@@ -100,8 +113,15 @@ hr.small {
   .navbar-custom .nav li a:focus {
     color: rgba(255, 255, 255, 0.8);
   }
+
 }
+
 @media only screen and (min-width: 1170px) {
+  img#line-art {
+    display: block;
+    width: 300px;
+  }
+
   .navbar-custom {
     -webkit-transition: background-color 0.3s;
     -moz-transition: background-color 0.3s;
@@ -161,9 +181,10 @@ hr.small {
 .intro-header .site-heading,
 .intro-header .post-heading,
 .intro-header .page-heading {
-  padding: 100px 0 50px;
+  padding: 110px 0 70px;
   color: white;
 }
+
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading,
   .intro-header .post-heading,
@@ -374,6 +395,7 @@ form .row:first-child .floating-label-form-group {
   background-color: white;
   border-radius: 0;
 }
+
 @media only screen and (min-width: 768px) {
   .pager li > a,
   .pager li > span {
@@ -414,9 +436,6 @@ img::-moz-selection {
   background: transparent;
 }
 
-img {
-  margin: auto;
-}
 
 body {
   webkit-tap-highlight-color: #38271d;
