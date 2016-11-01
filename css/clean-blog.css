@@ -86,6 +86,7 @@ hr.small {
   font-weight: 800;
   letter-spacing: 1px;
 }
+
 @media only screen and (min-width: 768px) {
 
   body {
@@ -190,7 +191,7 @@ hr.small {
 .intro-header .site-heading,
 .intro-header .post-heading,
 .intro-header .page-heading {
-  padding: 110px 0 50px;
+  padding: 95px 0 35px;
   color: white;
 }
 
@@ -198,7 +199,7 @@ hr.small {
   .intro-header .site-heading,
   .intro-header .post-heading,
   .intro-header .page-heading {
-    padding: 120px 0;
+    padding: 100px 0;
   }
 }
 .intro-header .site-heading,
@@ -279,7 +280,6 @@ hr.small {
   font-size: 18px;
   font-style: italic;
   margin-top: 0;
-  margin-bottom: 3em;
 }
 .post-preview > .post-meta > a {
   text-decoration: none;
@@ -294,6 +294,10 @@ hr.small {
   .post-preview > a > .post-title {
     font-size: 36px;
   }
+
+  .post-preview > .post-meta {
+    margin-bottom: 2.5em;
+  }  
 }
 .section-heading {
   font-size: 36px;
