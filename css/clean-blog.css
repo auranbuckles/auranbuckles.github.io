@@ -157,14 +157,14 @@ hr.small {
     transition: transform 0.3s;
   }
   .navbar-custom.is-fixed .navbar-brand {
-    color: #404040;
+    color: #38271d;
   }
   .navbar-custom.is-fixed .navbar-brand:hover,
   .navbar-custom.is-fixed .navbar-brand:focus {
     color: #698a2e;
   }
   .navbar-custom.is-fixed .nav li a {
-    color: #404040;
+    color: #38271d;
   }
   .navbar-custom.is-fixed .nav li a:hover,
   .navbar-custom.is-fixed .nav li a:focus {
@@ -179,6 +179,9 @@ hr.small {
     transform: translate3d(0, 100%, 0);
   }
 }
+
+/*site and post headers*/
+
 .intro-header {
   background: no-repeat center center;
   background-color: #808080;
@@ -227,8 +230,9 @@ hr.small {
     font-size: 70px;
   }
 }
+
 .intro-header .post-heading h1 {
-  font-size: 35px;
+  font-size: 30px;
 }
 .intro-header .post-heading .subheading,
 .intro-header .post-heading .meta {
@@ -245,21 +249,38 @@ hr.small {
   font-family: 'Lato', Helvetica, sans-serif;
   font-style: italic;
   font-weight: 200;
-  font-size: 20px;
+  font-size: 10px;
 }
 .intro-header .post-heading .meta a {
   color: white;
 }
+
 @media only screen and (min-width: 768px) {
   .intro-header .post-heading h1 {
-    font-size: 55px;
+    font-size: 45px;
+  }
+  .intro-header .post-heading .subheading {
+    font-size: 20px;
+  }
+  .intro-header .post-heading .meta {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 1170px) {
+  .intro-header .post-heading h1 {
+    font-size: 52px;
   }
   .intro-header .post-heading .subheading {
     font-size: 30px;
   }
+  .intro-header .post-heading .meta {
+    font-size: 18px;
+  }
 }
+
 .post-preview > a {
-  color: #404040;
+  color: #38271d;
 }
 .post-preview > a:hover,
 .post-preview > a:focus {
@@ -284,7 +305,7 @@ hr.small {
 }
 .post-preview > .post-meta > a {
   text-decoration: none;
-  color: #404040;
+  color: #38271d;
 }
 .post-preview > .post-meta > a:hover,
 .post-preview > .post-meta > a:focus {
@@ -429,7 +450,7 @@ form .row:first-child .floating-label-form-group {
 .pager .disabled > a:focus,
 .pager .disabled > span {
   color: #808080;
-  background-color: #404040;
+  background-color: #38271d;
   cursor: not-allowed;
 }
 ::-moz-selection {
