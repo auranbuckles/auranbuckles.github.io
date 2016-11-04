@@ -426,16 +426,12 @@ form .row:first-child .floating-label-form-group {
   color: white;
 }
 
-.btn-inverse:hover,
-.btn-inverse:focus {
-  border: 1px solid #ccc;
-  background-color: white;
-  color: #38271d;
-}
 .btn-cancel {
   border: 1px solid #ccc;
   background-color: white;
 }
+.btn-inverse:hover,
+.btn-inverse:focus,
 .btn-cancel:hover,
 .btn-cancel:focus {
   border: 1px solid #ccc;
