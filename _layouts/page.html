@@ -22,13 +22,13 @@ layout: default
             </li>
             {% endif %}
             {% if site.email %}
-            <li>
-              <a href="mailto:{{ site.email }}" target="_blank">
+            <li data-toggle="modal" data-target="#modal">
+              <div id="mail-icon">
                 <span class="fa-stack">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
                 </span>
-              </a>
+              </div>
             </li>
             {% endif %}
             {% if site.linkedin_username %}
@@ -44,16 +44,22 @@ layout: default
           </ul>
           <span class="subheading">{% if page.title != "About" %}{{ site.description }}{% endif %}</span>
         </div>
+
+        {% include modal.html %}
       </div>
     </div>
   </div>
+
 </header>
+
+
 
 <!-- Main Content -->
 <div class="container">
+
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			{{ content }}
+			{{ content }}    
 		</div>
 	</div>
 </div>
