@@ -25,8 +25,7 @@ The tricky part of this is to mimic how the page was rendered using Rails in the
 
 After implementing serializers through [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers), then [establishing the relationships and rendering the pages in JSON](https://blog.engineyard.com/2015/active-model-serializers), AJAX is ready to deliver the information. The jQuery below listens for the click event made on the `".show-orders"` button and returns a list of associated orders via AJAX.
 
-```
-	
+{% highlight ruby %}
   $(".show-orders").on("click", function(e) {
     // prevent response from loading a new page
     e.preventDefault();
@@ -36,31 +35,31 @@ After implementing serializers through [ActiveModelSerializers](https://github.c
     var currentId = $(".js-next").attr("data-id");
 
     $.get("/features/" + currentId + "/orders").success(function(json) {
-    	console.log(currentId);
-    	var list = $("div.orders-list table")
-    	list.html("")
+      console.log(currentId);
+      var list = $("div.orders-list table")
+      list.html("")
 
-    	list.append("<tr><th>Order ID</th><th>Feature</th><th>Planet</th><th>Size (fy sq.)</th><th>Price (Pu)</th></tr>");
+      list.append("<tr><th>Order ID</th><th>Feature</th><th>Planet</th><th>Size (fy sq.)</th><th>Price (Pu)</th></tr>");
 
-    	json.forEach(function(order) {
-    		list.append("<tr><td>"
-    		 + order.id + "</td>"
-    		 + "<td>" + order.feature.name + "</td>"
-    		 + "<td>" + order.planet.name + "</td>"
-    		 + "<td>" + order.size + "</td>"
-    		 + "<td>" + order.price * 1000
-    		 + "</td></tr>")
-    	})
+      json.forEach(function(order) {
+        list.append("<tr><td>"
+         + order.id + "</td>"
+         + "<td>" + order.feature.name + "</td>"
+         + "<td>" + order.planet.name + "</td>"
+         + "<td>" + order.size + "</td>"
+         + "<td>" + order.price * 1000
+         + "</td></tr>")
+      })
     })
-	});
-```
+  });
+{% endhighlight %}
 
 Then, moving back and forth between the features is made possible by the following jQuery. The "previous" button is exactly the same, except that data-id is written as `("data-id")) - 1`.
 
-```
-	$(".js-next").on("click", function() {
+{% highlight ruby %}
+  $(".js-next").on("click", function() {
 
-		var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/features/" + nextId + ".json", function(feature) {
       $("#featureName").text(feature["name"].titleize());
       $("#featureDescription").text(feature["description"]);
@@ -70,12 +69,12 @@ Then, moving back and forth between the features is made possible by the followi
       $(".js-next").attr("data-id", feature["id"]);
 
       // does not show orders if user has not already clicked for it
-	    if($(".show-orders").data('clicked')) {
-		    $(".show-orders").click();
-			}
+      if($(".show-orders").data('clicked')) {
+        $(".show-orders").click();
+      }
     });
-	});
-```
+  });
+{% endhighlight %}
 
 ## Harmonizing AJAX GET Requests
 

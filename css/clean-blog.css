@@ -422,6 +422,7 @@ form .row:first-child .floating-label-form-group {
   color: white;
 }
 .btn-inverse {
+  border: 1px solid #698a2e;
   background-color: #698a2e;
   color: white;
 }
