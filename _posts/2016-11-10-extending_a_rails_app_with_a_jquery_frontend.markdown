@@ -5,13 +5,13 @@ date:   2016-11-10 01:33:11 -0500
 ---
 
 
-The most mind-boggling aspect of web development isn't learning a new language or memorizing the different functions or methods in a language, at least for a web developer still at the beginning stages of learning. The ability to coordinate different languages in a programmer-friendly and utility-maximizing fashion is vital in creating beautiful and functional web applications, but the path isn't always so smooth. Often, the benefits reaped from libraries and frameworks that are built on this principle come with incidental disadvantages that just have to be compromised.
+The most mind-boggling aspect of web development isn't learning a new language or memorizing the different functions or methods in a language, at least for a beginner developer. The ability to coordinate different languages in a programmer-friendly and utility-maximizing fashion is vital in creating beautiful and functional web applications, but the path isn't always so smooth. Often, the benefits reaped from libraries and frameworks that are built on this principle come with incidental disadvantages that just have to be compromised.
 
 As mentioned in a previous blog post, I created [a basic Rails application](https://github.com/auranbuckles/oovarts-planet-shop-at-the-end-of-the-universe) that sells planets to customers. A user can sign up, create planets, and make orders to add features like forests and glaciers to their planets. I extended this app to incorporate a jQuery frontend, which required an effective integration of HTML, CSS, JavaScript, and Ruby. As a result, certain pages can display information and interact with the user while discarding the need for a new GET request, the default browser behavior.
 
 ## Adding User Interaction
 
-When users browse a feature's show page at `/features/:id`, they can see a display of the feature's name and description attributes, fetched from the database, along with an associated image from the asset pipeline. Previously, this was simply done by rendering Ruby code through the ERB templating system – `<%= @feature.name.titleize %>` would return "Forest," and so forth.
+When users browse a feature's show page at `/features/:id`, they can see a display of the feature's name and description attributes, fetched from the database, along with an associated image from the asset pipeline. Previously, this was done by simply rendering Ruby code through the ERB templating system – `<%= @feature.name.titleize %>` would return "Forest," and so forth.
 
 ![Oovart's Planet Shop feature page](/img/oovarts-planet-shop-3.png)
 
@@ -19,11 +19,11 @@ With a jQuery frontend, I made it possible for users to (1) press a button to vi
 
 ![Oovart's Planet Shop feature page](/img/oovarts-planet-shop-4.gif)
 
-The tricky part of this is to mimic how the page was rendered using Rails in the backend, and bring it to the frontend using JavaScript and jQuery. For example, `<%= image_tag @feature.name.parameterize, :id => "featureImage", :class => "img-rounded img-responsive" %>` becomes `$("#featureImage").attr("src", "/assets/" + feature["name"].parameterize() + ".jpg")`. Because both options have to be available, when a change is made in one file, the other needs to be adjusted accordingly. This results in duplicated work for the developer, but there really isn't an alternative in this framework.
+The tricky part of this is to mimic how the page was rendered using Rails in the backend, and bring it to the frontend with JavaScript and jQuery. For example, `<%= image_tag @feature.name.parameterize, :id => "featureImage", :class => "img-rounded img-responsive" %>` becomes `$("#featureImage").attr("src", "/assets/" + feature["name"].parameterize() + ".jpg")`. Because both options have to be available, when a change is made in one file, the other needs to be adjusted accordingly. This results in duplicated work for the developer, but there really isn't an alternative under this framework.
 
 ## Rendering JSON Through AJAX GET Requests
 
-After implementing serializers through [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers), then [establishing the relationships and rendering the pages in JSON](https://blog.engineyard.com/2015/active-model-serializers), AJAX is ready to deliver the information. The jQuery below listens for the click event made on the `".show-orders"` button and returns a list of associated orders via AJAX.
+After implementing serializers through [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers), and [establishing the relationships and rendering the pages in JSON](https://blog.engineyard.com/2015/active-model-serializers), AJAX is ready to deliver the information. The jQuery below listens for the click event made on the `".show-orders"` button and returns a list of associated orders via AJAX.
 
 {% highlight ruby %}
   $(".show-orders").on("click", function(e) {

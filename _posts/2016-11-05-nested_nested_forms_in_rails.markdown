@@ -31,7 +31,7 @@ end
 
 ## Start with a Simple form_for
 
-The first part of the form simply creates a new Planet object with the [`form_for`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_for) helper. A planet has a name, population, and moons. For the purposes of this tutorial, I removed the Bootstrap classes to clear up the code.
+The first part of the form simply creates a new Planet object with the [`form_for`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_for) helper. A planet has a `:name`, `:population`, and `:moons`. For the purposes of this tutorial, I removed the Bootstrap classes to clean up the code.
 
 {% highlight ruby %}
 <%= form_for @planet do |f| %>
@@ -84,7 +84,7 @@ The second part of the form refers to the Order model, which `belongs_to` a plan
 
 ### Models
 
-In order for nested attributes to be sent to the controller and create a new object, the associated model has to contain a attribute writer. While the [`accepts_nested_attributes_for`](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html) macro takes care of this, you can also write your own custom attribute writer. The correct syntax is `<associated_model>_attributes=`.
+In order for nested attributes to be sent to the controller and create a new object, the associated model has to contain an attribute writer. While the [`accepts_nested_attributes_for`](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html) macro takes care of this, you can also write your own custom attribute writer. The correct syntax is `<associated_model>_attributes=`.
 
 {% highlight ruby %}
 class Planet < ActiveRecord::Base
