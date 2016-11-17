@@ -28,7 +28,7 @@ Users in Zookeeper can:
 7. Reset their animal's status to the default status
 8. Delete their animals
 
-By default, a profile picture is assigned to each species, so that when a user creates a sloth, a picture of a sloth will show up in its profile. Upon creation, each animal also has an appetite level of 10 and a happiness level of 0. This is because the animal is not fed yet. At sign up, each user gets a certain amount of bamboo shoots, fish, fruits, grass, and meat. Users may purchase more of each type of food by submitting a form (no credit card required, of course). Because each species only eats one type of food, when an animal is fed, the user's food inventory will adjust accordingly. This restriction begins with a helper method:
+By default, a profile picture is assigned to each species (`<img src="/images/<%= @animal.species.parameterize %>.jpg">`), so that when a user creates a sloth, a picture of a sloth will show up in its profile. Upon creation, each animal also has an appetite level of 10 and a happiness level of 0. This is because the animal is not fed yet. At sign up, each user gets a certain amount of bamboo shoots, fish, fruits, grass, and meat. Users may purchase more of each type of food by submitting a form (no credit card required, of course). Because each species only eats one type of food, when an animal is fed, the user's food inventory will adjust accordingly. This restriction begins with a helper method:
 
 {% highlight ruby %}
 class ApplicationController < Sinatra::Base
@@ -90,7 +90,11 @@ class AnimalsController < ApplicationController
 end
 {% endhighlight %}
 
-Writing the above two pieces of code was probably the second most difficult part of this project, as it required some long-time-no-see lower level Ruby code. The most difficult part was user authentication during sign up and log in, and preventing the user from taking actions that belong to other users. For example, a user shouldn't be able to edit or feed another user's animals, or update their food inventory. Luckily, the cookie-cutter ```logged_in?``` and ```current_user``` helpers often used in simple applications solved all these problems. While I at first filled in all the routes in the Application Controller, they were moved to a separate Session Controller to free up the clutter.
+And now, the user is able to do this:
+
+![Zookeeper animal show page](/img/zookeeper.gif) 
+
+The most difficult part was user authentication during sign up and log in, and preventing the user from taking actions that belong to other users. For example, a user shouldn't be able to edit or feed another user's animals, or update their food inventory. Luckily, the cookie-cutter ```logged_in?``` and ```current_user``` helpers often used in simple applications solved all these problems. While I at first filled in all the routes in the Application Controller, they were moved to a separate Session Controller to free up the clutter.
 
 If I were to expand upon this project, the first move would be to display error messages in the sign up / login routes, and where users perform actions without authority. The front-end CSS and JavaScript also need some beautification. To increase user interaction in the application, an additional Zoo class or Visitor class can add more layers of functionality. Having visitors would allow users to issue and track tickets to other users. Overall, I enjoyed this project, not just because I love the subject and theme, but more importantly, I gained a firmer grasp of the CRUD functions in a Sinatra application. Watching the code come together bit by bit and blossom into a fully functional application is truly every developer's greatest satisfaction.
 
