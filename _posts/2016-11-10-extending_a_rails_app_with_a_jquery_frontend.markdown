@@ -7,7 +7,7 @@ date:   2016-11-10 01:33:11 -0500
 
 The most mind-boggling aspect of web development isn't learning a new language or memorizing the different functions or methods in a language, at least for a beginner developer. Coordinating different languages in a flexible and effective fashion is important in creating beautiful and functional web applications, but the path isn't always so smooth. Often, the benefits reaped from libraries and frameworks that are built on this principle come with incidental disadvantages that just have to be compromised.
 
-As mentioned in a previous blog post, I created [a basic Rails application](https://github.com/auranbuckles/oovarts-planet-shop-at-the-end-of-the-universe) that sells planets to customers. A user can sign up, create planets, and make orders to add features like forests and glaciers to their planets. I extended this app to incorporate a jQuery frontend, which required an effective integration of HTML, CSS, JavaScript, and Ruby. As a result, certain pages can display information and interact with the user while discarding the need for a new GET request, the default browser behavior.
+Two weeks ago, I created [a basic Rails application](https://github.com/auranbuckles/oovarts-planet-shop-at-the-end-of-the-universe) that sells planets to customers. A user can sign up, create planets, and make orders to add features such as forests and glaciers to their planets. I extended this app to incorporate a jQuery frontend, which required an integration of HTML, CSS, JavaScript, and Ruby. As a result, certain pages can display information and interact with the user while discarding the need for a new GET request, the default browser behavior.
 
 ## Adding User Interaction
 
