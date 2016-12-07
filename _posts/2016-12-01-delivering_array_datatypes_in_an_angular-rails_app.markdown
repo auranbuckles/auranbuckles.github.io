@@ -193,7 +193,7 @@ Then, this array is turned into a long string, joined by **\r\n**, so that Rails
 
 ![Recipe Form var data](/img/world-recipes-01.png)
 
-Since **\r\n** was used, instead of seeing "\r\n" after each ingredient item, it will show either an arrow or an actual new line. Then, in order for Rails to receive this data correctly in the backend, a custom writer is needed in the serializer:
+Since **\r\n** was used, instead of seeing "\r\n" after each ingredient item, it will show either an arrow or an actual new line. (Edit: I eventually abandoned this because I am using seed data, which escapes every "\" instance. I changed it to "/r/n" instead, but the original string would've worked if it wasn't for the seed data.) Then, in order for Rails to receive this data correctly in the backend, a custom writer is needed in the serializer:
 
 {% highlight ruby %}
 class Recipe < ApplicationRecord
