@@ -532,3 +532,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+code {
+  font-size: 85%;
+  color: #af183e;
+}

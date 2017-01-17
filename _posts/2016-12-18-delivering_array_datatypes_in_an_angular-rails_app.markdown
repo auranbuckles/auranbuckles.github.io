@@ -216,7 +216,7 @@ These methods will split the string into an array on each **\r\n**, so that Rail
 
 ![recipe object in the Rails controller](/img/world-recipes-02.png)
 
-For the purposes of this tutorial, I've purposefully omitted some code, including Bootstrap classes and data validations, but you can view the full project [on Github](https://github.com/auranbuckles/world-recipes).
+For the purposes of this tutorial, I've purposefully omitted some unredlated code, including Bootstrap classes and data validations, but you can view the full project [on Github](https://github.com/auranbuckles/world-recipes).
 
 
 
