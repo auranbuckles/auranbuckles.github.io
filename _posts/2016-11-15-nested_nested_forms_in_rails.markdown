@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Nested Nested Forms in Rails"
-date:   2016-11-05 17:30:26 +0000
+date:   2016-11-15 17:30:26 +0000
 ---
 
 

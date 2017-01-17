@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "My First CLI Gem - Discover Tokyo!"
-date:   2016-10-21 22:03:28 -0400
+date:   2016-09-02 22:03:28 -0400
 ---
 
 

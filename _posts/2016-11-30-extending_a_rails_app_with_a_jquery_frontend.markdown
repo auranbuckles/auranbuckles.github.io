@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Extending a Rails App with a jQuery Frontend"
-date:   2016-11-10 01:33:11 -0500
+date:   2016-11-30 01:33:11 -0500
 ---
 
 

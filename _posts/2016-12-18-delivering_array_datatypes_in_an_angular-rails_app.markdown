@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Delivering Array Datatypes in an Angular-Rails App"
-date:   2016-12-01 04:08:10 +0000
+date:   2016-12-18 04:08:10 +0000
 ---
 
 

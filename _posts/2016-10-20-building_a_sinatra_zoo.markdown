@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Building a Sinatra Zoo"
-date:   2016-10-24 16:12:12 -0400
+date:   2016-10-20 16:12:12 -0400
 ---
 
 

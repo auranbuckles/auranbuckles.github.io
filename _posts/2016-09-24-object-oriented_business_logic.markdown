@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Object-Oriented Business Logic"
-date:   2016-10-24 00:47:45 +0000
+date:   2016-09-24 00:47:45 +0000
 ---
 
 
