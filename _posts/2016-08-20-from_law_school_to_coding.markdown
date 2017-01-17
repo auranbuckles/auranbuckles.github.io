@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "From Law School to Coding"
-date:   2016-10-20 18:28:59 -0400
+date:   2016-08-20 18:28:59 -0400
 ---
 
 
