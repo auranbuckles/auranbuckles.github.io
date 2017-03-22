@@ -4,9 +4,9 @@ title:  "Using the Google Analytics API Ruby Gem in Rails"
 date:   2017-03-21 04:08:10 +0000
 ---
 
-Google has some of the most useful APIs out there for apps and developers to gather information from Google or data from its users. [Google Maps](https://developers.google.com/maps/) and [Google Talk](https://developers.google.com/talk/) are two of the most popular ones. The Google Analytics API is also an extremely valuable resource for analysts and website owners. Google Analytics collects and outputs data that can be used to reach the right audience by tracking a website's user interactions with an embedded script.
+Google has some of the most useful APIs for apps and developers to gather information from Google or data from its users. [Google Maps](https://developers.google.com/maps/) and [Google Talk](https://developers.google.com/talk/) are two of the most popular ones. The Google Analytics API is also an extremely valuable resource for analysts and website owners. Google Analytics collects and outputs data that can be used to reach the right audience by tracking a website's user interactions with an embedded script.
 
-Although this post uses the Analytics API as an example, you can apply the same code structure to other APIs such as Drive, Sheets, or Translate. [Google-api-ruby-client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa) is a gem made for Google's APIs, which includes a giant list of APIs that can be accessed with it. It's a great library created by Google's developers, but it is still in Alpha, and for less experienced coders, the documentation isn't very comprehensive as of now.
+Although this post uses the Analytics API as an example, you can apply the same code structure to other APIs such as [Drive](https://developers.google.com/drive/), [Sheets](https://developers.google.com/sheets/), or [Translate](https://cloud.google.com/translate/docs/). [Google-api-ruby-client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa) is a gem made for Google's APIs, which includes a giant list of APIs that can be accessed with it. It's a great library created by Google's developers, but it is still in Alpha, and for less experienced coders, the documentation isn't very comprehensive as of now.
 
 The [previous blog post]({% post_url 2017-02-28-authenticating_google_users_with_devise_and_omniauth_in_rails %}) covers authentication using Devise and Omniauth. In addition to authentication, you'll need these gems to get ready to call the APIs:
 - [Google API Client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa)
@@ -23,9 +23,9 @@ gem 'signet'
 gem 'rest-client' # optional
 {% endhighlight %}
 
-Once your app is able to sign up and verify users through Google's OAuth, Google will allow you to access the user's information after they've granted you permission. To figure out which APIs and kinds of permissions you will need from the user, dig around [Google's guide for developers](https://developers.google.com) and look through the [different Google API scopes](https://developers.google.com/identity/protocols/googlescopes). I recommend testing the results in the [OAuth 2.0 Playground](https://developers.google.com/oauthplayground).
+Once your app is able to sign up and verify users through Google's OAuth, Google will allow you to access the user's information after they've granted you permission. To figure out which APIs and kinds of permissions you'll need from the user, dig around [Google's guide for developers](https://developers.google.com) and look through the [different Google API scopes](https://developers.google.com/identity/protocols/googlescopes). I recommend testing the results in the [OAuth 2.0 Playground](https://developers.google.com/oauthplayground).
 
-For this app, I used the [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3/) and the [Analytics Core Reporting API v3](https://developers.google.com/analytics/devguides/reporting/core/v3/reference), which asks the user for permission to access their Analytics account information and data (read only) upon sign up. If you are using Devise, you can define the scope of information you are requiring in `config`:
+For this app, I used the [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3/) and the [Analytics Core Reporting API v3](https://developers.google.com/analytics/devguides/reporting/core/v3/reference), which require user permission to access the user's Analytics account upon sign up. If you are using Devise, you can define the scope of information you are requiring in `config`:
 
 {% highlight ruby %}
 # config/initializers/devise.rb
@@ -39,17 +39,17 @@ For this app, I used the [Management API](https://developers.google.com/analytic
   }
 {% endhighlight %}
 
-`userinfo.email` and `userinfo.profile` are scopes under the [Google OAuth2 API](https://developers.google.com/identity/protocols/OAuth2) that include the user's email address and basic profile info. `analytics.readonly` allows you to view the user's Google Analytics data. If you want management permissions as well, change it to `analytics` instead. Now, once a user signs up, Google will ask for the permissions accordingly: 
+`userinfo.email` and `userinfo.profile` are scopes under the [Google OAuth2 API](https://developers.google.com/identity/protocols/OAuth2) that include the user's email address and basic profile info. `analytics.readonly` allows you to view the user's Google Analytics data. If you want additional management capabilities as well, change it to just `analytics` instead. Now, once a user signs up, Google will ask for the permissions accordingly: 
 
 ![Google Permissions Request](/img/google-permissions-1.png)
 
-If you need offline access, make sure to include `access_type: 'offline', prompt: 'consent'` in your configurations for authentication. This will allow you to, for example, make regular API calls even when the user is not signed in.
+If you need offline access, make sure to include `access_type: 'offline', prompt: 'consent'` in your configuration. This will allow you to, for example, make regular API calls even when the user is not signed in.
 
 ![Google Permissions Request](/img/google-permissions-2.png)
 
-Next, let's build the API service. Depending on your app's needs, you can either create the service as a module or as a class. In general, because modules can be included in classes using the `include` command, they provide methods that are easily accessible across multiple classes. Classes, on the other hand, cannot be included in classes, but can inherit behavior or be inherited. Classes can also be instantiated and become a new object for easy manipulation.
+Next, let's build the API service. Depending on your app's needs, you can either create the service as a module or as a class. In general, because modules can be included in classes using the `include` command, they provide methods that are easily accessible across multiple classes. Classes, on the other hand, cannot be included, but can inherit behavior or be inherited. Classes can also be instantiated as a new object for easy manipulation.
 
-To keep things neat and to allow for more services, I've created a "services" folder. The Google Analytics Service in this example uses a module, so that `GoogleAnalyticsService.method` can be called from anywhere that includes it.
+To keep things neat and to allow for more services, I've created a "services" folder. The Google Analytics Service in this example uses a module, so that `GoogleAnalyticsService.authorize` can be called from anywhere that includes it.
 
 If you haven't required the API(s) you need in the Gemfile, `require` them on the first line.
 
@@ -78,11 +78,11 @@ module GoogleAnalyticsService
 end
 {% endhighlight %}
 
-[Signet](https://github.com/google/signet) is currently having some compatibility issues with the newest version of the library, so you have have to downgrade the library version you are using if you encounter authentication errors, but the above code worked for me. You can initialize a client by creating an instance of `Signet::OAuth2::Client` and supplying it with the token and credentials. Refer to the [previous blog post]({% post_url 2017-02-28-authenticating_google_users_with_devise_and_omniauth_in_rails %}) to implement methods that refresh the access token for Signet.
+[Signet](https://github.com/google/signet) is currently facing some compatibility issues with the newest version of the library, so you may have to downgrade the library version you are using if you encounter authentication errors, but the above code worked for me. Initialize a client by creating an instance of `Signet::OAuth2::Client` and supplying it with the token and credentials. Refer to the [previous blog post]({% post_url 2017-02-28-authenticating_google_users_with_devise_and_omniauth_in_rails %}) to implement methods that refresh the access token for Signet. This would fix the current incompatibility problem.
 
-At this point, you should be able to call the Analytics API from anywhere in the app. If you look into the folders on Github, [google-api-ruby-client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa) comes with ready methods you can use to access various data, such as `get_realtime_data` and `list_account_summaries`. They are listed under "google-api-ruby-client/generated/google/apis/analytics_v3/service.rb".
+At this point, you should be able to call the Analytics API from anywhere in the app. If you look into the folders on Github, [google-api-ruby-client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa) comes with ready methods you can use to access various data, such as `get_realtime_data` and `list_account_summaries`. These are listed under "google-api-ruby-client/generated/google/apis/analytics_v3/service.rb".
 
-For example, `list_account_summaries` can be used in the User class in this way:
+For example, `list_account_summaries` can simply be used in the User class in this way:
 
 {% highlight ruby %}
 # app/models/user.rb
@@ -101,7 +101,7 @@ class User < ApplicationRecord
 end
 {% endhighlight %}
 
-Then, you can also iterate over the JSON response to create new objects. Here, User `has_many ga_accounts`, ga_accounts `has_many ga_properties`, and ga_properties `has_many ga_views`. So, the complete user profile can be built this way once the user signs up:
+You can also iterate over the JSON response to create new objects. Here, User `has_many ga_accounts`, ga_accounts `has_many ga_properties`, and ga_properties `has_many ga_views`. So, a complete user profile can be built this way once the user signs up:
 
 {% highlight ruby %}
 # app/models/user.rb
