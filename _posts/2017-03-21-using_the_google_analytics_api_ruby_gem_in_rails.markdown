@@ -60,20 +60,20 @@ require 'google/apis/analytics_v3'
 
 module GoogleAnalyticsService
 
-	def self.authorize(user)
-		# refresh and set user access token
-		user.refresh_token_if_expired
-		access_token = user.access_token
+  def self.authorize(user)
+    # refresh and set user access token
+    user.refresh_token_if_expired
+    access_token = user.access_token
 
-		# create new signet account and authorize
-		client = Signet::OAuth2::Client.new(access_token: access_token)
-		client.expires_in = Time.now + 1_000_000
+    # create new signet account and authorize
+    client = Signet::OAuth2::Client.new(access_token: access_token)
+    client.expires_in = Time.now + 1_000_000
 
-		analytics = Google::Apis::AnalyticsV3::AnalyticsService.new
-		analytics.authorization = client
+    analytics = Google::Apis::AnalyticsV3::AnalyticsService.new
+    analytics.authorization = client
 
-		return analytics
-	end
+    return analytics
+  end
 
 end
 {% endhighlight %}
@@ -153,13 +153,13 @@ When using the methods provided by the library, make sure to include the mandato
 # app/models/ga_view.rb
 
 class GaView < ApplicationRecord
-	belongs_to :ga_property
+  belongs_to :ga_property
 
   def user
     self.ga_property.ga_account.user
   end
 
-	def get_ga_data_previous_day(dimension)
+  def get_ga_data_previous_day(dimension)
     user = self.user
 
     ids = "ga:" + self.view_id
