@@ -57,7 +57,7 @@ This is the JSON response from the API call:
    "expires_at"=>1490139861,
    "expires"=>true},
  "extra"=>
-    ...
+  ...
 {% endhighlight %}
 
 Then in the model for the users (here, the User model), add Google as a provider for Omniauth and a `from_omniauth` class method to assign the returned values from the API call to attributes of the User class.
@@ -70,7 +70,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
 
-	...
+  ...
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -89,7 +89,7 @@ class User < ApplicationRecord
     end
   end
 
-	...
+  ...
 end
 {% endhighlight %}
 
