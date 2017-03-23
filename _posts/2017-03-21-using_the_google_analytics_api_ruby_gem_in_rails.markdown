@@ -49,11 +49,11 @@ If you need offline access, make sure to include `access_type: 'offline', prompt
 
 ![Google Permissions Request](/img/google-permissions-2.png)
 
-Next, let's build the API service. Depending on your app's needs, you can either create the service as a module or as a class. In general, because modules can be included in classes using the `include` command, they provide methods that are easily accessible across multiple classes. Classes, on the other hand, cannot be included, but can inherit behavior or be inherited. Classes can also be instantiated as a new object for easy manipulation.
+Next, let's build the API service. Depending on your app's needs, you can either create the service as a module or as a class. In general, because modules can be included in classes using the `include` command, they provide methods that are easily accessible across multiple classes. Classes, on the other hand, cannot be `include`d, but can inherit behavior or be inherited. Classes can also be instantiated as a new object that can receive attributes as arguments.
 
 To keep things neat and to allow for more services, I've created a "services" folder. The Google Analytics Service in this example uses a module, so that `GoogleAnalyticsService.authorize` can be called from anywhere that includes it.
 
-If you haven't required the API(s) you need in the Gemfile, `require` them on the first line.
+If you haven't required the API(s) you need in the Gemfile, `require` them at the beginning.
 
 {% highlight ruby %}
 # app/services/google_analytics_service.rb
@@ -80,9 +80,9 @@ module GoogleAnalyticsService
 end
 {% endhighlight %}
 
-[Signet](https://github.com/google/signet) is currently facing some compatibility issues with the newest version of the library, so you may have to downgrade the library version you are using if you encounter authentication errors, but the above code worked for me. Initialize a client by creating an instance of `Signet::OAuth2::Client` and supplying it with the token and credentials. Refer to the [previous blog post]({% post_url 2017-02-28-authenticating_google_users_with_devise_and_omniauth_in_rails %}) to implement methods that refresh the access token for Signet. This would fix the current incompatibility problem.
+[Signet](https://github.com/google/signet) handles OAuth 2.0 protocol required to make API calls, and is included with the Google API Client Library for Ruby. It is currently facing some compatibility issues with the newest version of the library, so you may have to downgrade the library version you are using if you encounter authentication errors, but the above code worked for me. Initialize a client by creating an instance of `Signet::OAuth2::Client` and supplying it with the token and credentials. Refer to the [previous blog post]({% post_url 2017-02-28-authenticating_google_users_with_devise_and_omniauth_in_rails %}) to implement methods that refresh the access token for Signet. This should fix the current incompatibility problem.
 
-At this point, you should be able to call the Analytics API from anywhere in the app. If you look into the folders on Github, [google-api-ruby-client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa) comes with ready methods you can use to access various data, such as `get_realtime_data` and `list_account_summaries`. These are listed under "google-api-ruby-client/generated/google/apis/analytics_v3/service.rb".
+At this point, you should be able to call the Core Reporting API from anywhere in the app. If you look into the folders on Github, [google-api-ruby-client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa) comes with ready methods you can use to access various data, such as `get_realtime_data` and `list_account_summaries`. These are listed under "google-api-ruby-client/generated/google/apis/analytics_v3/service.rb".
 
 For example, `list_account_summaries` can simply be used in the User class in this way:
 
