@@ -1,12 +1,12 @@
-url: https://auran.life
-enforce_ssl: auran.life
+url: https://auranbuckles.com
+enforce_ssl: auranbuckles.com
 
 # Site settings
 title:  Auran Buckles
 header-img: img/banner.jpg
 author: Auran Buckles
 email: auran59@gmail.com
-copyright_name: auran.life
+copyright_name: auranbuckles.com
 # description:
 baseurl: "" # the subpath of your site, e.g. /blog
 # twitter_username: 

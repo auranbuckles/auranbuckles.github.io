@@ -1,6 +1,7 @@
 _site
 .sass-cache
 .jekyll-metadata
+/bower_components/
 
 test.html
 test2.html
