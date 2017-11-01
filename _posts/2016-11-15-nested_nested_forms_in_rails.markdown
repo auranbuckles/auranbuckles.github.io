@@ -7,7 +7,7 @@ date:   2016-11-15 17:30:26 +0000
 
 In Rails, nested forms allow multiple models to be included in one form, so that a single submission can create more than one object in the database. There are different ways to implement nested forms. Scaffolding is a quick and easy way to get your app up and running, and will work with this tutorial. In the case of my recent [Planet Shop Rails App](https://github.com/auranbuckles/oovarts-planet-shop-at-the-end-of-the-universe), which I will be using as an example here, I had to implement a nested form and another nested form within that form.
 
-![Oovart's Planet Shop Nested Form](/img/oovarts-planet-shop-2.png)
+![Oovart's Planet Shop Nested Form]({{ site.img_path }}oovarts-planet-shop-2.png)
 
 This nested nested form was necessary because of the `has_many, through` relationship between models. In the app, a Planet `has_many` features through orders, and a Feature `has_many` planets through orders. In turn, an Order `belongs_to` a planet and `belongs_to` a feature.
 

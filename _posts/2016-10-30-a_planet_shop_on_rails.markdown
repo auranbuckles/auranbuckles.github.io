@@ -9,7 +9,7 @@ date:   2016-10-30 17:38:03 -0400
 
 The idea for this project isn't entirely original. The title is a reference to Douglas Adams' second book in the Hitchhiker's Guide to the Galaxy trilogy, [The Restaurant at the End of the Universe](https://en.wikipedia.org/wiki/The_Restaurant_at_the_End_of_the_Universe){:target="_blank"}.
 
-![Oovart's Planet Shop Sitepage](/img/oovarts-planet-shop-1.png)
+![Oovart's Planet Shop Sitepage]({{ site.img_path }}oovarts-planet-shop-1.png)
 
 The first and foremost task before diving into the code was mapping out the relational database for the application. Instead of features, I initially wanted to allow users to create inhabitants for their planets. The only problem was, because the inhabitants were unique to the individual planets, I wouldn't have been able to implement a has_many, through association between the users and the inhabitants. I could have still gone with it by creating preexisting species of inhabitants, but I ultimately decided to experiment on a less complex scale with the Feature model first.
 

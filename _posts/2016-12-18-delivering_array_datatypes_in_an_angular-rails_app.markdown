@@ -27,7 +27,7 @@ Dealing with the array datatype in Rails 5 is fairly straight forward. In your R
 
 However, to send information to the server through Angular, array datatypes become more complicated as it is delivered in JSON. For the Rails backend to receive and parse the information, the data must be in string format. In order to dry up the code and use Angular more efficiently, I used [bower-rails](https://github.com/rharriso/bower-rails), [Responders](https://github.com/plataformatec/responders), [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers), [AngularDevise](https://github.com/cloudspace/angular_devise), and [Angular Rails Templates](https://github.com/pitr/angular-rails-templates). Next, we can build a form in the views for the user to create a recipe that gets saved to the database. This is the desired end behavior:
 
-![New Recipe Form](/img/world-recipes.gif)
+![New Recipe Form]({{ site.img_path }}world-recipes.gif)
 
 First, have your [Rails controllers](http://guides.rubyonrails.org/action_controller_overview.html) and [serializers](http://api.rubyonrails.org/classes/ActiveModel/Serializers/JSON.html) set up to so that Rails has the available routes for Angular to save to the database and that Angular can read the information retrieved from the backend, which is expected to be in JSON format:
 
@@ -191,7 +191,7 @@ The ingredients array takes the form of `[{quantity: '', name: ''}, {quantity: '
 
 Then, this array is turned into a long string, joined by **\r\n**, so that Rails will later be responsible for converting this back to a proper array. It's not necessary to use **\r\n**. Any string of characters will do, but something like a comma (**,**) might not be ideal since ingredient names or units might have commas them. I choose **\r\n** simply because it represents an [ASCII new line character](https://en.wikipedia.org/wiki/Newline) and presents itself well while debugging in the console. In the end, this is what the final `data` variable looks like:
 
-![Recipe Form var data](/img/world-recipes-01.png)
+![Recipe Form var data]({{ site.img_path }}world-recipes-01.png)
 
 Since **\r\n** was used, instead of seeing "\r\n" after each ingredient item, it will show either an arrow or an actual new line. (Edit: I eventually abandoned this because I am using seed data, which escapes every "\" instance. I changed it to "/r/n" instead, but the original string would've worked if it wasn't for the seed data.) Then, in order for Rails to receive this data correctly in the backend, a custom writer is needed in the serializer:
 
@@ -214,7 +214,7 @@ end
 
 These methods will split the string into an array on each **\r\n**, so that Rails can simply save it to the database using the simple syntax we saw in the beginning – `Recipe.create(ingredients: ['1 cup all-purpose flour', '1 teaspoon white sugar', '1/4 teaspoon salt', '3 eggs', '2 cups milk', '2 tablespoons butter, melted'])`. You can read more about this on the [Active Record documentation](http://api.rubyonrails.org/classes/ActiveRecord/Base.html#method-c-serialize). Using Pry to look into the Rails controller action #create, we can see that it is in the correct format:
 
-![recipe object in the Rails controller](/img/world-recipes-02.png)
+![recipe object in the Rails controller]({{ site.img_path }}world-recipes-02.png)
 
 For the purposes of this tutorial, I've purposefully omitted some unredlated code, including Bootstrap classes and data validations, but you can view the full project [on Github](https://github.com/auranbuckles/world-recipes).
 

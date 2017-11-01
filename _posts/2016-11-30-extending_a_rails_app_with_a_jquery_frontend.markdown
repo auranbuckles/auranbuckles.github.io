@@ -13,11 +13,11 @@ Two weeks ago, I created [a basic Rails application](https://github.com/auranbuc
 
 When users browse a feature's show page at `/features/:id`, they can see a display of the feature's name and description attributes, fetched from the database, along with an associated image from the asset pipeline. Previously, this was done by simply rendering Ruby code through the ERB templating system – `<%= @feature.name.titleize %>` would return "Forest," and so forth.
 
-![Oovart's Planet Shop feature page](/img/oovarts-planet-shop-3.png)
+![Oovart's Planet Shop feature page]({{ site.img_path }}oovarts-planet-shop-3.png)
 
 With a jQuery frontend, I made it possible for users to (1) press a button to view the feature's associated orders in a table, and (2) use the "next" and "previous" buttons to scroll through all the features in the database, (3) without the page calling for an HTML GET request and refreshing the page. The last functionality requires firing a GET request through AJAX, and enhances user experience because information is generated (seemingly) seamlessly.
 
-![Oovart's Planet Shop feature page](/img/oovarts-planet-shop-4.gif)
+![Oovart's Planet Shop feature page]({{ site.img_path }}oovarts-planet-shop-4.gif)
 
 The tricky part of this is to mimic how the page was rendered using Rails in the backend, and bring it to the frontend with JavaScript and jQuery. For example, `<%= image_tag @feature.name.parameterize, :id => "featureImage", :class => "img-rounded img-responsive" %>` becomes `$("#featureImage").attr("src", "/assets/" + feature["name"].parameterize() + ".jpg")`. Because both options have to be available, when a change is made in one file, the other needs to be adjusted accordingly. This results in duplicated work for the developer, but there really isn't an alternative under this framework.
 

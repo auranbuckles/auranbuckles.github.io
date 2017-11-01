@@ -6,7 +6,7 @@ date:   2017-03-21 04:08:10 +0000
 
 Google has some of the most useful APIs for apps and developers to gather information from Google or data from its users. The two most popular are [Google Maps](https://developers.google.com/maps/) and [Google Talk](https://developers.google.com/talk/). The [Google Analytics APIs](https://developers.google.com/analytics/) are also valuable resources for analysts and website owners to reach the right audience. Google Analytics collects user-interaction data through an embedded script on the website, which then allows developers to manage how the data is processed. The APIs then provide access and reports data such as the average page load time or the number of daily transactions on a given website.
 
-![Google Analytics Overview](/img/ga-overview.png)
+![Google Analytics Overview]({{ site.img_path }}ga-overview.png)
 
 Although this post uses the Analytics Core Reporting API as an example, you can apply the same code structure to other APIs such as [Drive](https://developers.google.com/drive/), [Sheets](https://developers.google.com/sheets/), or [Translate](https://cloud.google.com/translate/docs/). [Google-api-ruby-client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa) is a gem made for Google's APIs, which includes a giant list of APIs that can be accessed with it. It's a great library created by Google's developers, but it is still in Alpha, and for less experienced coders, the documentation isn't very comprehensive as of now.
 
@@ -33,7 +33,7 @@ For this app, I used the [Management API](https://developers.google.com/analytic
 # config/initializers/devise.rb
 
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
-  { access_type: 'offline', 
+  { access_type: 'offline',
     prompt: 'consent',
     select_account: true,
     scope: 'userinfo.email,userinfo.profile,analytics.readonly',
@@ -41,13 +41,13 @@ For this app, I used the [Management API](https://developers.google.com/analytic
   }
 {% endhighlight %}
 
-`userinfo.email` and `userinfo.profile` are scopes under the [Google OAuth2 API](https://developers.google.com/identity/protocols/OAuth2) that include the user's email address and basic profile info. `analytics.readonly` allows you to view the user's Google Analytics data. If you want additional management capabilities as well, change it to just `analytics` instead. Now, once a user signs up, Google will ask for the permissions accordingly: 
+`userinfo.email` and `userinfo.profile` are scopes under the [Google OAuth2 API](https://developers.google.com/identity/protocols/OAuth2) that include the user's email address and basic profile info. `analytics.readonly` allows you to view the user's Google Analytics data. If you want additional management capabilities as well, change it to just `analytics` instead. Now, once a user signs up, Google will ask for the permissions accordingly:
 
-![Google Permissions Request](/img/google-permissions-1.png)
+![Google Permissions Request]({{ site.img_path }}google-permissions-1.png)
 
 If you need offline access, make sure to include `access_type: 'offline', prompt: 'consent'` in your configuration. This will allow you to, for example, make regular API calls even when the user is not signed in.
 
-![Google Permissions Request](/img/google-permissions-2.png)
+![Google Permissions Request]({{ site.img_path }}google-permissions-2.png)
 
 Next, let's build the API service. Depending on your app's needs, you can either create the service as a module or as a class. In general, because modules can be included in classes using the `include` command, they provide methods that are easily accessible across multiple classes. Classes, on the other hand, cannot be `include`d, but can inherit behavior or be inherited. Classes can also be instantiated as a new object that can receive attributes as arguments.
 
@@ -178,9 +178,3 @@ end
 {% endhighlight %}
 
 These example can easily be applied to other APIs in the library as well. To find the API you need, look under the folder path "google-api-ruby-client/generated/google/apis/(the_api_you_need)/service.rb". Hopefully, this post has helped clear up some confusion surrounding the relatively young and seldomly updated Google API gem.
-
-
-
-
-
-

@@ -150,5 +150,5 @@ end
 
 Lastly, double check to make sure you have the paths `user_google_oauth2_omniauth_authorize` and `user_google_oauth2_omniauth_callback`. Now, a link to "Sign in with Google" should automatically be generated on the sign in page that leads to the Google Sign In form.
 
-![Google Sign In Form](/img/google-sign-in.png)
+![Google Sign In Form]({{ site.img_path }}google-sign-in.png)
 

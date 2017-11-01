@@ -7,7 +7,7 @@ date:   2016-10-20 16:12:12 -0400
 
 For this [Sinatra Zookeeper](https://github.com/auranbuckles/zookeeper){:target="_blank"} project, I wanted to build something that simulated a real life event, something fun that people do on a weekend. I ultimately decided to create a zoo because (1) I love animals, and (2) going to the zoo involves just a few simple activities, but still has enough programmable interactions between the objects to make it interesting. After some brainstorming, I tweaked the idea a little, so that each user would create their own zoo, hence the name Zookeeper. This leaves room for potential additions such as visitors and tickets to be implemented in the future.
 
-![Zookeeper sitepage](/img/zookeeper.png)
+![Zookeeper sitepage]({{ site.img_path }}zookeeper.png)
 
 This project made me realize how important it is to take time to make a blueprint of the application before diving into the code. I spent a considerable amount of time drawing diagrams and mapping out possible relationships and interactions between the different classes (objects). During this planning stage, I had in mind 4 different zoo structures:
 
@@ -92,7 +92,7 @@ end
 
 And now, the user is able to do this:
 
-![Zookeeper animal show page](/img/zookeeper.gif) 
+![Zookeeper animal show page]({{ site.img_path }}zookeeper.gif) 
 
 The most difficult part was user authentication during sign up and log in, and preventing the user from taking actions that belong to other users. For example, a user shouldn't be able to edit or feed another user's animals, or update their food inventory. Luckily, the cookie-cutter ```logged_in?``` and ```current_user``` helpers often used in simple applications solved all these problems. While I at first filled in all the routes in the Application Controller, they were moved to a separate Session Controller to free up the clutter.
 
