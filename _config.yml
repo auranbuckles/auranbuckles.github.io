@@ -3,7 +3,8 @@ enforce_ssl: auranbuckles.com
 
 # Site settings
 title:  Auran Buckles
-header-img: img/banner.jpg
+header-img: assets/img/banner.jpg
+img_path: /assets/img
 author: Auran Buckles
 email: auran59@gmail.com
 copyright_name: auranbuckles.com
