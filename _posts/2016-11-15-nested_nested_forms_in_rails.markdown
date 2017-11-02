@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Nested Nested Forms in Rails"
-date:   2016-11-15 17:30:26 +0000
+date:   2016-11-15 12:30:26 +0000
 ---
 
 
@@ -78,7 +78,7 @@ The second part of the form refers to the Order model, which `belongs_to` a plan
     <% end %>
 
   ...
-	
+
   </div>
 {% endhighlight %}
 
@@ -88,9 +88,9 @@ In order for nested attributes to be sent to the controller and create a new obj
 
 {% highlight ruby %}
 class Planet < ActiveRecord::Base
-  
+
   ...
-	
+
   def orders_attributes=(attributes)
     attributes.values.each do |att|
       if !att[:feature_id].blank? || !att[:feature_attributes].blank? && !att[:size].blank?
@@ -151,7 +151,7 @@ Upon submission, **params[:planet]** returns this:
     }
 {% endhighlight %}
 
-As seen here, for each `fields_for :orders` part of the form, Rails creates a new number key (which is actually a string) within [:orders_attributes] that contains the values for each order. Because I duplicated the `fields_for :orders` nested form three times, they are reflected as "0", "1", and "2" here. Each of them will create a new Order object in the database, starting with `{"feature_id"=>"7", "size"=>"10000"}`. 
+As seen here, for each `fields_for :orders` part of the form, Rails creates a new number key (which is actually a string) within [:orders_attributes] that contains the values for each order. Because I duplicated the `fields_for :orders` nested form three times, they are reflected as "0", "1", and "2" here. Each of them will create a new Order object in the database, starting with `{"feature_id"=>"7", "size"=>"10000"}`.
 
 ## The Nested Nested Form
 
@@ -229,5 +229,5 @@ Let's get into the pry console and look at `params[:planet]` again.
         {"feature_attributes"=>{"name"=>"rainforest", "description"=>"A rainforest is a..."},
      "size"=>"99999"}}}
 {% endhighlight %}
-	
+
 The `"feature_attributes"` hash fetches the user inputs from the form, and sends the feature attributes "name" and "description" to the controller to be processed and made into a new Feature object. Now, the forms are ready to accept anything a user may throw at it. Don't forget to add validations and a submit button `<%= f.submit %>`. To see the full version of how this works, please go to the [Github repository](https://github.com/auranbuckles/oovarts-planet-shop-at-the-end-of-the-universe).

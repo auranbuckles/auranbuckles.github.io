@@ -5,7 +5,7 @@ date:   2016-10-20 16:12:12 -0400
 ---
 
 
-For this [Sinatra Zookeeper](https://github.com/auranbuckles/zookeeper){:target="_blank"} project, I wanted to build something that simulated a real life event, something fun that people do on a weekend. I ultimately decided to create a zoo because (1) I love animals, and (2) going to the zoo involves just a few simple activities, but still has enough programmable interactions between the objects to make it interesting. After some brainstorming, I tweaked the idea a little, so that each user would create their own zoo, hence the name Zookeeper. This leaves room for potential additions such as visitors and tickets to be implemented in the future.
+For this [Sinatra Zookeeper](https://github.com/auranbuckles/zookeeper) project, I wanted to build something that simulated a real life event, something fun that people do on a weekend. I ultimately decided to create a zoo because (1) I love animals, and (2) going to the zoo involves just a few simple activities, but still has enough programmable interactions between the objects to make it interesting. After some brainstorming, I tweaked the idea a little, so that each user would create their own zoo, hence the name Zookeeper. This leaves room for potential additions such as visitors and tickets to be implemented in the future.
 
 ![Zookeeper sitepage]({{ site.img_path }}zookeeper.png)
 
@@ -85,17 +85,17 @@ class AnimalsController < ApplicationController
     end
     redirect "/animal/#{@animal.id}"
   end
-	
+
   ...
 end
 {% endhighlight %}
 
 And now, the user is able to do this:
 
-![Zookeeper animal show page]({{ site.img_path }}zookeeper.gif) 
+![Zookeeper animal show page]({{ site.img_path }}zookeeper.gif)
 
 The most difficult part was user authentication during sign up and log in, and preventing the user from taking actions that belong to other users. For example, a user shouldn't be able to edit or feed another user's animals, or update their food inventory. Luckily, the cookie-cutter ```logged_in?``` and ```current_user``` helpers often used in simple applications solved all these problems. While I at first filled in all the routes in the Application Controller, they were moved to a separate Session Controller to free up the clutter.
 
 If I were to expand upon this project, the first move would be to display error messages in the sign up / login routes, and where users perform actions without authority. The front-end CSS and JavaScript also need some beautification. To increase user interaction in the application, an additional Zoo class or Visitor class can add more layers of functionality. Having visitors would allow users to issue and track tickets to other users. Overall, I enjoyed this project, not just because I love the subject and theme, but more importantly, I gained a firmer grasp of the CRUD functions in a Sinatra application. Watching the code come together bit by bit and blossom into a fully functional application is truly every developer's greatest satisfaction.
 
-[Zookeeper (Github)](https://github.com/auranbuckles/zookeeper){:target="_blank"}
+[Zookeeper (Github)](https://github.com/auranbuckles/zookeeper)
