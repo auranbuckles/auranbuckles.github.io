@@ -14,7 +14,7 @@ The [previous blog post]({% post_url 2017-02-28-authenticating_google_users_with
 - [Google API Client](https://github.com/google/google-api-ruby-client/tree/e13da8e05e2368421519e49d2c03ee7e69f3faaa)
 - [Signet](https://github.com/google/signet)
 
-{% highlight ruby %}
+```ruby
 # Gemfile
 
 gem 'devise'
@@ -23,13 +23,13 @@ gem 'omniauth-google-oauth2'
 gem 'google-api-client'
 gem 'signet'
 gem 'rest-client' # optional
-{% endhighlight %}
+```
 
 Once your app is able to sign up and verify users through Google's OAuth, Google will allow you to access the user's information after they've granted you permission. To figure out which APIs and kinds of permissions you'll need from the user, dig around [Google's guide for developers](https://developers.google.com) and look through the [different Google API scopes](https://developers.google.com/identity/protocols/googlescopes). I recommend testing the results in the [OAuth 2.0 Playground](https://developers.google.com/oauthplayground).
 
 For this app, I used the [Management API](https://developers.google.com/analytics/devguides/config/mgmt/v3/) and the [Analytics Core Reporting API v3](https://developers.google.com/analytics/devguides/reporting/core/v3/reference), which require user permission to access the user's Analytics account upon sign up. If you are using Devise, you can define the scope of information you are requiring in `config`:
 
-{% highlight ruby %}
+```ruby
 # config/initializers/devise.rb
 
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
@@ -39,7 +39,7 @@ For this app, I used the [Management API](https://developers.google.com/analytic
     scope: 'userinfo.email,userinfo.profile,analytics.readonly',
     client_options: {ssl: {ca_file: Rails.root.join("cacert.pem").to_s}}
   }
-{% endhighlight %}
+```
 
 `userinfo.email` and `userinfo.profile` are scopes under the [Google OAuth2 API](https://developers.google.com/identity/protocols/OAuth2) that include the user's email address and basic profile info. `analytics.readonly` allows you to view the user's Google Analytics data. If you want additional management capabilities as well, change it to just `analytics` instead. Now, once a user signs up, Google will ask for the permissions accordingly:
 
@@ -55,7 +55,7 @@ To keep things neat and to allow for more services, I've created a "services" fo
 
 If you haven't required the API(s) you need in the Gemfile, `require` them at the beginning.
 
-{% highlight ruby %}
+```ruby
 # app/services/google_analytics_service.rb
 
 require 'google/apis/analytics_v3'
@@ -78,7 +78,7 @@ module GoogleAnalyticsService
   end
 
 end
-{% endhighlight %}
+```
 
 [Signet](https://github.com/google/signet) handles OAuth 2.0 protocol required to make API calls, and is included with the Google API Client Library for Ruby. It is currently facing some compatibility issues with the newest version of the library, so you may have to downgrade the library version you are using if you encounter authentication errors, but the above code worked for me. Initialize a client by creating an instance of `Signet::OAuth2::Client` and supplying it with the token and credentials. Refer to the [previous blog post]({% post_url 2017-02-28-authenticating_google_users_with_devise_and_omniauth_in_rails %}) to implement methods that refresh the access token for Signet. This should fix the current incompatibility problem.
 
@@ -86,7 +86,7 @@ At this point, you should be able to call the Core Reporting API from anywhere i
 
 For example, `list_account_summaries` can simply be used in the User class in this way:
 
-{% highlight ruby %}
+```ruby
 # app/models/user.rb
 
 class User < ApplicationRecord
@@ -101,11 +101,11 @@ class User < ApplicationRecord
   ...
 
 end
-{% endhighlight %}
+```
 
 You can also iterate over the JSON response to create new objects. Here, User `has_many ga_accounts`, ga_accounts `has_many ga_properties`, and ga_properties `has_many ga_views`. So, a complete user profile can be built this way once the user signs up:
 
-{% highlight ruby %}
+```ruby
 # app/models/user.rb
 
 class User < ApplicationRecord
@@ -147,11 +147,11 @@ class User < ApplicationRecord
   end
 
 end
-{% endhighlight %}
+```
 
 When using the methods provided by the library, make sure to include the mandatory (and optional) arguments. For example, `get_ga_data` requires `(ids, start_date, end_date, metrics)`:
 
-{% highlight ruby %}
+```ruby
 # app/models/ga_view.rb
 
 class GaView < ApplicationRecord
@@ -175,6 +175,6 @@ class GaView < ApplicationRecord
     GoogleAnalyticsService.authorize(user).get_ga_data(ids, start_date, end_date, metrics, dimensions: dimensions, sort: sort, max_results: max_results)
   end
 end
-{% endhighlight %}
+```
 
 These example can easily be applied to other APIs in the library as well. To find the API you need, look under the folder path "google-api-ruby-client/generated/google/apis/(the_api_you_need)/service.rb". Hopefully, this post has helped clear up some confusion surrounding the relatively young and seldomly updated Google API gem.
