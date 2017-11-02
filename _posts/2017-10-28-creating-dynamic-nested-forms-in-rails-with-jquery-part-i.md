@@ -1,10 +1,12 @@
 ---
 layout: post
 title: Creating Dynamic Nested Forms in Rails with jQuery - Part I
-date: 2017-08-01
+date: 2017-10-28
 ---
 
 I'm currently working on a project for nonprofits to create event pages, which allows users to register for, volunteer at, or sponsor these events. To allow nonprofits to create sponsorship levels for sponsors to choose from when creating an event, I've had to add nested fields via multiple `has_many` and `has_many :through` relationships. For the first layer of the relationship, I used the [nested_form](https://github.com/ryanb/nested_form) gem, with some jQuery sprinkled on to enhance UX, which is the focus of this article. Because utilizing the gem in implementing more complex relationships wasn't very practical, the next article will be demonstrating how this can be done through pure jQuery.
+
+## The Associations
 
 Here's a summary of the relationships between events and sponsorship options. This article will only focus on just the association between Event and SponsorshipLevel.
 
@@ -31,6 +33,8 @@ class Perk < ActiveRecord::Base
   has_many :sponsorship_levels, through: :sponsorship_perks
 end
 ```
+
+## With the Help of nested_form
 
 After fiddling around for a while with jQuery, I decided that it would be easier to translate the first association, Event `has_many :sponsorship_levels`, into a nested form through ryanb's [nested_form](https://github.com/ryanb/nested_form) gem. It's easy to use and even has support for [SimpleForm](https://github.com/plataformatec/simple_form) and [Formtastic](https://github.com/justinfrench/formtastic). The docs are also undeniably straightforward in guiding you through the installation and implementation process. Just be sure you:
 1. Add `accepts_nested_attributes_for :sponsorship_levels` to the Event model
@@ -79,6 +83,8 @@ After fiddling around for a while with jQuery, I decided that it would be easier
 
 ![Sponsorship Levels Form]({{ site.img_path }}{{ page.date | date: '%Y-%m-%d' }}/sponsorship-levels.png)
 
+## Strong Parameters
+
 Don't forget to provide the nested attributes using strong parameters in the Events controller:
 
 ```ruby
@@ -105,6 +111,8 @@ end
     {"name"=>"Triple Cheeseburger", "amount"=>"3000", "max_sponsorships"=>"", "_destroy"=>"false"}
   }
 ```
+
+## Custom jQuery
 
 There are two jQuery/JavaScript scripts that were used to improve user experience when interacting with the sponsorship levels forms. The first one hides the first remove button on the page so that the user cannot remove all sponsorship levels on the page:
 
