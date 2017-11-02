@@ -129,4 +129,4 @@ $(document).on('nested:fieldAdded nested:fieldRemoved', function(event){
 The end result:
 ![Sponsorship Levels Form]({{ site.img_path }}{{ page.date | date: '%Y-%m-%d' }}/sponsorship-levels.gif)
 
-For readability's sake, I've removed all Bootstrap classes and form validations, so your form may not look exactly the same. In Part II of this article, I'll be extending SponsorshipLevels by adding another layer of nested fields, and explaining how adding and removing nested fields can be done using jQuery.
+For readability's sake, I've removed all Bootstrap classes and form validations, so your form may not look exactly the same. In Part II of this article, I'll be extending SponsorshipLevel by adding another layer of nested fields for SponsorshipPerk and Perk, and explaining how adding and removing nested fields can be done using jQuery.
