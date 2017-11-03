@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.img_path }}{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+          <img id="line-art" src="{{ site.img_path }}line-art.png" alt="">
+          <ul class="list-inline text-center">
+            {% if site.github_username %}
+            <li>
+              <a href="https://github.com/{{ site.github_username }}" target="_blank">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            {% endif %}
+            {% if site.email %}
+            <li data-toggle="modal" data-target="#modal">
+              <div id="mail-icon">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </div>
+            </li>
+            {% endif %}
+            {% if site.linkedin_username %}
+            <li>
+                <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank">
+                  <span class="fa-stack">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+            </li>
+            {% endif %}
+          </ul>
+          <span class="subheading">{% if page.title != "About" %}{{ site.description }}{% endif %}</span>
+        </div>
+
+        {% include modal.html %}
+      </div>
+    </div>
+  </div>
+
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			{{ content }}
+		</div>
+	</div>
+</div>
+
+<hr>
