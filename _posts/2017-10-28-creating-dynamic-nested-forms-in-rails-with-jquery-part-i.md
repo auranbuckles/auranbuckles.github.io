@@ -4,7 +4,7 @@ title: Creating Dynamic Nested Forms in Rails with jQuery - Part I
 date: 2017-10-28
 ---
 
-I'm currently working on a project for nonprofits to create event pages, which allows users to register for, volunteer at, or sponsor these events. To allow nonprofits to create sponsorship levels for sponsors to choose from when creating an event, I've had to add nested fields via multiple `has_many` and `has_many :through` relationships. For the first layer of the relationship, I used the [nested_form](https://github.com/ryanb/nested_form) gem, with some jQuery sprinkled on to enhance UX, which is the focus of this article. Because utilizing the gem in implementing more complex relationships wasn't very practical, the next article will be demonstrating how this can be done through pure jQuery.
+I'm currently working on a project for nonprofits to create event pages, which allows users to register for, volunteer at, or sponsor these events. To allow nonprofits to create sponsorship levels for sponsors to choose from when creating an event, I've had to add nested fields via multiple `has_many` and `has_many :through` relationships. For the first layer of the relationship, I used the [nested_form](https://github.com/ryanb/nested_form) gem, with some jQuery sprinkled on to enhance UX, which is the focus of this article. Because utilizing the gem in implementing more complex relationships wasn't very practical, the [next article]({% post_url 2018-01-22-creating-dynamic-nested-forms-in-rails-with-jquery-part-ii %}) will be demonstrating how this can be done through pure jQuery.
 
 ## The Associations
 
